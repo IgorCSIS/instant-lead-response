@@ -23,7 +23,7 @@ and how hot it is. You never climbed down.
 It runs entirely in your browser. No account, no API key, no backend, and
 nothing is ever sent.
 
-**Live demo:** https://igorcsis.github.io/instant-lead-response/
+**Live demo:** https://igorcsis.github.io/instant-lead-response/  
 **Stack:** hand-written HTML, CSS and JavaScript. No build step, no
 dependencies, nothing to install.
 
