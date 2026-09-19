@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#070E18" />
+
+    <title>Instant Lead Response: the demo for East County trades</title>
+    <meta
+      name="description"
+      content="A simulated demo of instant lead response for HVAC and plumbing owners in East County San Diego. A form comes in while you are on a job, the customer gets a fast text back, and you get an SMS notify. Works alongside Jobber or Housecall Pro."
+    />
+    <meta name="author" content="Igor Lima" />
+    <link rel="canonical" href="https://igorcsis.github.io/instant-lead-response/" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Instant Lead Response" />
+    <meta property="og:title" content="Missed the lead while you were on a job?" />
+    <meta
+      property="og:description"
+      content="A simulated demo: the customer gets a fast text back and you get an SMS notify, while you keep Jobber or Housecall Pro."
+    />
+    <meta property="og:url" content="https://igorcsis.github.io/instant-lead-response/" />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <span class="wordmark">
+          <img src="assets/logo.svg" alt="" width="28" height="28" />
+          Instant Lead Response
+        </span>
+        <!--
+          The honesty chip lives in the header so it is on screen at every
+          scroll position, not just above the fold. Nothing on this page
+          sends anything, and that has to be impossible to miss.
+        -->
+        <span class="chip chip-demo">Demo only. No real SMS or email is sent.</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero wrap">
+        <h1>Missed the lead while you were on a job?</h1>
+        <p class="sub">
+          This demo shows an instant text or email back to the customer, then an SMS notify to
+          you, while you keep Jobber or Housecall Pro.
+        </p>
+
+        <div class="hero-actions">
+          <button id="run-fake-lead" type="button" class="btn btn-primary">Run fake lead</button>
+          <a class="btn btn-ghost" href="#next-to-jobber">How this sits next to Jobber</a>
+        </div>
+
+        <div class="near-cta">
+          <span class="chip chip-quiet">Keeps your Jobber</span>
+          <span class="chip chip-quiet">Not a CRM replace</span>
+        </div>
+
+        <!--
+          One live region for the whole run. Screen readers get the same
+          progress a sighted person gets from the timeline.
+        -->
+        <p id="run-status" class="status" role="status" aria-live="polite" hidden></p>
+      </section>
+
+      <section class="panels wrap" aria-label="What each side receives">
+        <article class="card card-customer">
+          <div class="card-header">
+            <h3>What the customer gets</h3>
+            <span class="chip chip-quiet" id="customer-state">Waiting</span>
+          </div>
+          <div class="card-body" id="customer-body">
+            <p class="panel-empty">
+              No lead yet. Run a fake HVAC lead to see the reply and your notify.
+            </p>
+          </div>
+        </article>
+
+        <article class="card card-owner">
+          <div class="card-header">
+            <h3>What you get</h3>
+            <span class="chip chip-quiet" id="owner-state">Waiting</span>
+          </div>
+          <div class="card-body" id="owner-body">
+            <p class="panel-empty">
+              Your phone buzzes with the name, the job and how hot it is, without climbing down.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <section class="timeline-section wrap" aria-label="What happens, and when">
+        <h2 style="font-size: 1.05rem">What happens, and when</h2>
+        <p class="step-note" style="margin-top: 0.35rem">
+          Simulated timing. The clock shows what a live install is set up to do.
+        </p>
+
+        <ol class="timeline" id="timeline">
+          <li class="step" data-step="received" data-state="pending">
+            <div class="step-head">
+              <span class="step-clock">0s</span>
+              <span class="step-label">Lead received</span>
+            </div>
+            <p class="step-note">Web form or missed call, whichever came in first.</p>
+          </li>
+          <li class="step" data-step="reply" data-state="pending">
+            <div class="step-head">
+              <span class="step-clock">8s</span>
+              <span class="step-label">Auto-reply sent</span>
+            </div>
+            <p class="step-note">Template names the job and asks one qualifying question.</p>
+          </li>
+          <li class="step" data-step="notify" data-state="pending">
+            <div class="step-head">
+              <span class="step-clock">12s</span>
+              <span class="step-label">Owner notified</span>
+            </div>
+            <p class="step-note">Name, job, city and urgency, on your phone.</p>
+          </li>
+        </ol>
+      </section>
+
+      <details class="accordion card wrap" id="next-to-jobber">
+        <summary>How this sits next to Jobber</summary>
+        <div class="card-body">
+          <div class="item">
+            <h4>You could build it yourself in HighLevel</h4>
+            <p>
+              HighLevel can do this for around $97 a month. The gap is not the software, it is the
+              hours of setup and the templates. You stay on the job and I ship the playbook.
+            </p>
+          </div>
+          <div class="item">
+            <h4>Jobber already texts people</h4>
+            <p>
+              Jobber wins scheduling and invoicing, and it stays your system of record. The
+              multi-step qualify and the owner buzz are often thin or on a higher plan. This sits
+              on top of what you already run.
+            </p>
+          </div>
+          <div class="item">
+            <h4>Someone remote will do it for $299</h4>
+            <p>
+              A remote starter pack hands you a snapshot and leaves. This is local to East County,
+              keeps Jobber or Housecall Pro, comes with a walkthrough video under a minute, and is
+              not finished until your SMS is actually live.
+            </p>
+          </div>
+        </div>
+      </details>
+
+      <section class="offer wrap" aria-label="What a local install costs">
+        <h2 style="font-size: 1.05rem">Want this on your own phone?</h2>
+        <p class="sub" style="margin-top: 0.5rem">
+          Done-for-you instant lead response for East County trades: missed-call text-back, form
+          qualify and owner SMS, on top of Jobber or Housecall Pro.
+        </p>
+
+        <dl class="offer-grid">
+          <div class="offer-item">
+            <dt>Install</dt>
+            <dd>from $997 DFY setup</dd>
+          </div>
+          <div class="offer-item">
+            <dt>Payment shape</dt>
+            <dd>$497 deposit, $500 when SMS goes live</dd>
+          </div>
+          <div class="offer-item">
+            <dt>Optional care</dt>
+            <dd>$149 a month, light support</dd>
+          </div>
+        </dl>
+
+        <p class="step-note" style="margin-top: 0.85rem">
+          You keep paying your own messaging usage, and you keep Jobber or Housecall Pro. The
+          second payment is due when your SMS is cleared and sending, not before.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="mailto:niftystudiodesigns@gmail.com?subject=East%20County%20DFY%20install">
+            East County DFY install, $997
+          </a>
+          <a class="btn btn-ghost" href="https://igorcsis.github.io/niftyai-portfolio/" target="_blank" rel="noopener noreferrer">
+            See the rest of my work
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>Built by Igor Lima &middot; El Cajon / East County</span>
+        <span>DFY install for trades from $997. This page is the demo only.</span>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

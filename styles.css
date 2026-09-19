@@ -1,0 +1,668 @@
+/*
+ * Instant Lead Response: the demo's styles.
+ *
+ * Hand written rather than a framework on purpose. The whole page is three
+ * files served straight from GitHub Pages, so there is no build step, no
+ * dependency to keep current, and nothing that can quietly drop a class it
+ * compiled. It also stays free to host forever, which is the point.
+ *
+ * The palette is the contractor lane shared with the Ridgeview and Lead
+ * Follow-up demos: deep ink, sand text, ember accent. System fonts only, so
+ * the page makes no network request once it has loaded.
+ */
+
+:root {
+  --ink-950: #070e18;
+  --ink-900: #0b1220;
+  --ink-800: #111c2e;
+  --ink-700: #1b2a40;
+  --ink-600: #2a3d57;
+
+  --sand-50: #f8fafc;
+  --sand-200: #cbd5e1;
+  --sand-400: #8fa3bc;
+
+  --ember-400: #f59e0b;
+  --ember-500: #d97706;
+  --ember-600: #c2410c;
+
+  --good: #34d399;
+  --good-bg: #0c2a22;
+  --warn: #fbbf24;
+  --warn-bg: #2a2109;
+  --bad: #f87171;
+  --bad-bg: #2b1417;
+
+  --radius-card: 0.875rem;
+  --tap: 2.75rem;
+
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--ink-950);
+  color: var(--sand-200);
+  font-family: var(--sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ember, not teal. Teal belongs to the security lane. */
+:focus-visible {
+  outline: 2px solid var(--ember-400);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+::selection {
+  background: var(--ember-500);
+  color: #fff;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--sand-50);
+  line-height: 1.2;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--ember-400);
+}
+
+.wrap {
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ------------------------------------------------------------------ chrome */
+
+/*
+ * Sticky on purpose. The honesty chip is the one thing on this page that has
+ * to be readable at every scroll position, and a header that scrolls away
+ * takes it with it. The bar is kept short so it costs little on a phone.
+ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--ink-950);
+  border-bottom: 1px solid var(--ink-700);
+}
+
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 0.75rem;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+  flex-wrap: wrap;
+}
+
+/*
+ * Anything an in-page link jumps to has to clear the sticky bar, or the
+ * heading lands underneath it and the visitor thinks the link is broken.
+ */
+:target,
+[id] {
+  scroll-margin-top: 6rem;
+}
+
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 600;
+  color: var(--sand-50);
+}
+
+.wordmark img {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+/* ------------------------------------------------------------------- chips */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 999px;
+  padding: 0.25rem 0.7rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/*
+ * The honesty chip. Ember outline rather than success green, because green
+ * on this page means a step completed, and nothing about "this is a demo"
+ * is a success state.
+ */
+.chip-demo {
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--ember-400);
+}
+
+.chip-quiet {
+  border: 1px solid var(--ink-600);
+  color: var(--sand-400);
+}
+
+.chip-good {
+  background: var(--good-bg);
+  color: var(--good);
+}
+
+.chip-warn {
+  background: var(--warn-bg);
+  color: var(--warn);
+}
+
+.chip-bad {
+  background: var(--bad-bg);
+  color: var(--bad);
+}
+
+/* ----------------------------------------------------------------- buttons */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: var(--tap);
+  padding: 0.65rem 1.15rem;
+  border-radius: 0.65rem;
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--ember-500);
+  color: var(--ink-950);
+}
+
+.btn-primary:hover {
+  background: var(--ember-400);
+}
+
+.btn-ghost {
+  border-color: var(--ink-600);
+  background: transparent;
+  color: var(--sand-200);
+}
+
+.btn-ghost:hover {
+  border-color: var(--ember-400);
+  color: var(--ember-400);
+}
+
+/* A disabled control must not look live. */
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn:disabled:hover {
+  background: var(--ember-500);
+  border-color: transparent;
+  color: var(--ink-950);
+}
+
+.btn-ghost:disabled:hover {
+  background: transparent;
+  border-color: var(--ink-600);
+  color: var(--sand-200);
+}
+
+/* -------------------------------------------------------------------- hero */
+
+/*
+ * Longhand, not the padding shorthand. The hero is also a .wrap, and a
+ * shorthand here would reset that class's side gutters to zero and push the
+ * headline flat against the edge of a phone screen.
+ */
+.hero {
+  padding-top: 2rem;
+}
+
+.hero h1 {
+  font-size: 1.75rem;
+  letter-spacing: -0.02em;
+  max-width: 20ch;
+}
+
+.hero .sub {
+  margin-top: 0.9rem;
+  max-width: 54ch;
+  color: var(--sand-200);
+}
+
+.hero-actions {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.near-cta {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* -------------------------------------------------------------------- card */
+
+.card {
+  border: 1px solid var(--ink-700);
+  border-radius: var(--radius-card);
+  background: var(--ink-800);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.85rem 1.1rem;
+  border-bottom: 1px solid var(--ink-700);
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+}
+
+.card-header h3 {
+  font-size: 0.95rem;
+}
+
+.card-body {
+  padding: 1.1rem;
+}
+
+/* The owner side is the one being sold, so it carries the accent. */
+.card-owner .card-header {
+  background: rgba(217, 119, 6, 0.12);
+  border-bottom-color: rgba(245, 158, 11, 0.25);
+}
+
+.card-customer .card-header {
+  background: var(--ink-900);
+}
+
+/* ------------------------------------------------------------------ panels */
+
+.panels {
+  margin-top: 2rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.panel-empty {
+  color: var(--sand-400);
+  font-size: 0.92rem;
+}
+
+/* A message the customer would receive. Left aligned, plain. */
+.bubble {
+  border: 1px solid var(--ink-700);
+  background: var(--ink-950);
+  border-radius: 0.75rem;
+  padding: 0.85rem 0.95rem;
+  font-size: 0.92rem;
+  color: var(--sand-200);
+}
+
+.bubble + .bubble {
+  margin-top: 0.65rem;
+}
+
+.bubble-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--sand-400);
+}
+
+/* The customer's own reply, so it reads as coming from the other side. */
+.bubble-reply {
+  border-color: rgba(245, 158, 11, 0.3);
+  background: rgba(245, 158, 11, 0.07);
+}
+
+.notify {
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  background: var(--ink-950);
+  border-radius: 0.75rem;
+  padding: 0.95rem;
+}
+
+.notify-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.75rem;
+  margin-top: 0.7rem;
+  font-size: 0.9rem;
+}
+
+.notify-line dt {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--sand-400);
+  margin: 0;
+  min-width: 5.5rem;
+}
+
+.notify-line dd {
+  margin: 0;
+  color: var(--sand-50);
+  font-weight: 600;
+}
+
+.notify-body {
+  margin-top: 0.9rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--ink-700);
+  font-size: 0.92rem;
+}
+
+/* ---------------------------------------------------------------- timeline */
+
+.timeline-section {
+  margin-top: 2rem;
+}
+
+.timeline {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.step {
+  position: relative;
+  padding: 0 0 1.35rem 2.25rem;
+  border-left: 2px solid var(--ink-700);
+  margin-left: 0.5rem;
+}
+
+.step:last-child {
+  padding-bottom: 0;
+  border-left-color: transparent;
+}
+
+.step::before {
+  content: "";
+  position: absolute;
+  left: -0.55rem;
+  top: 0.15rem;
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 999px;
+  border: 2px solid var(--ink-600);
+  background: var(--ink-950);
+}
+
+.step-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.step-clock {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--sand-400);
+  min-width: 2.2rem;
+}
+
+.step-label {
+  color: var(--sand-400);
+  font-weight: 600;
+}
+
+.step-note {
+  margin-top: 0.2rem;
+  font-size: 0.88rem;
+  color: var(--sand-400);
+}
+
+/* Active: the step being simulated right now. */
+.step[data-state="active"] {
+  border-left-color: var(--ember-500);
+}
+
+.step[data-state="active"]::before {
+  border-color: var(--ember-400);
+  background: var(--ember-500);
+  animation: step-pulse 1s ease-in-out infinite;
+}
+
+.step[data-state="active"] .step-label,
+.step[data-state="active"] .step-clock {
+  color: var(--ember-400);
+}
+
+/* Done: finished and staying on screen. */
+.step[data-state="done"] {
+  border-left-color: var(--good);
+}
+
+.step[data-state="done"]::before {
+  border-color: var(--good);
+  background: var(--good);
+}
+
+.step[data-state="done"] .step-label {
+  color: var(--sand-50);
+}
+
+.step[data-state="done"] .step-clock {
+  color: var(--good);
+}
+
+@keyframes step-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(245, 158, 11, 0);
+  }
+}
+
+/* --------------------------------------------------------------- accordion */
+
+.accordion {
+  margin-top: 2rem;
+}
+
+.accordion summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 0.9rem 1.1rem;
+  min-height: var(--tap);
+  display: flex;
+  align-items: center;
+  color: var(--sand-200);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.accordion summary::before {
+  content: "\25B8";
+  margin-right: 0.6rem;
+  color: var(--sand-400);
+}
+
+.accordion[open] summary::before {
+  content: "\25BE";
+}
+
+.accordion .card-body {
+  border-top: 1px solid var(--ink-700);
+}
+
+.accordion h4 {
+  margin: 0 0 0.3rem;
+  color: var(--sand-50);
+  font-size: 0.92rem;
+}
+
+.accordion .item + .item {
+  margin-top: 1.1rem;
+}
+
+.accordion p {
+  font-size: 0.92rem;
+  color: var(--sand-400);
+}
+
+/* ------------------------------------------------------------------- offer */
+
+.offer {
+  margin-top: 2.5rem;
+}
+
+.offer-grid {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.offer-item {
+  border: 1px solid var(--ink-700);
+  border-radius: 0.65rem;
+  background: var(--ink-900);
+  padding: 0.9rem 1rem;
+}
+
+.offer-item dt {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--sand-400);
+}
+
+.offer-item dd {
+  margin: 0.35rem 0 0;
+  color: var(--sand-50);
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------------ status */
+
+.status {
+  margin-top: 1rem;
+  border-radius: 0.65rem;
+  padding: 0.7rem 0.95rem;
+  font-size: 0.92rem;
+  border: 1px solid var(--ink-600);
+  background: var(--ink-900);
+  color: var(--sand-200);
+}
+
+.status[data-tone="error"] {
+  border-color: rgba(248, 113, 113, 0.4);
+  background: var(--bad-bg);
+  color: var(--bad);
+}
+
+.status[hidden] {
+  display: none;
+}
+
+/* ------------------------------------------------------------------ footer */
+
+.site-footer {
+  margin-top: 3rem;
+  border-top: 1px solid var(--ink-700);
+}
+
+.site-footer .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.5rem;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  padding-bottom: 2.5rem;
+  font-size: 0.88rem;
+  color: var(--sand-400);
+}
+
+/* ------------------------------------------------------------------ larger */
+
+@media (min-width: 40rem) {
+  .hero {
+    padding-top: 3rem;
+  }
+
+  .hero h1 {
+    font-size: 2.25rem;
+  }
+
+  .panels {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .offer-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Reduced motion: no pulse, no transitions. The steps still sequence, they
+   just arrive without animation. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
