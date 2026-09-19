@@ -51,21 +51,57 @@
           you, while you keep Jobber or Housecall Pro.
         </p>
 
+        <!--
+          Both ways the same job walks in. A missed call hands you a number
+          and nothing else, which is the case most owners lose, so it gets
+          equal billing rather than a footnote.
+        -->
+        <div class="source-pick">
+          <span class="source-pick-label" id="source-pick-label">Lead comes in from</span>
+          <div class="segmented" role="radiogroup" aria-labelledby="source-pick-label">
+            <button
+              type="button"
+              class="seg"
+              role="radio"
+              aria-checked="true"
+              tabindex="0"
+              data-source="form"
+            >
+              Web form
+            </button>
+            <button
+              type="button"
+              class="seg"
+              role="radio"
+              aria-checked="false"
+              tabindex="-1"
+              data-source="call"
+            >
+              Missed call
+            </button>
+          </div>
+        </div>
+
         <div class="hero-actions">
           <button id="run-fake-lead" type="button" class="btn btn-primary">Run fake lead</button>
-          <a class="btn btn-ghost" href="#next-to-jobber">How this sits next to Jobber</a>
+          <a class="btn btn-ghost" href="#next-to-jobber">
+            How this sits next to Jobber or Housecall Pro
+          </a>
         </div>
+
+        <!--
+          One live region for the whole run, sitting directly under the button
+          that starts it. It carries the honesty line at rest, so the first
+          thing under the call to action is what the page will not do.
+        -->
+        <p id="run-status" class="status" role="status" aria-live="polite" data-tone="info">
+          Demo only. Nothing is sent.
+        </p>
 
         <div class="near-cta">
           <span class="chip chip-quiet">Keeps your Jobber</span>
           <span class="chip chip-quiet">Not a CRM replace</span>
         </div>
-
-        <!--
-          One live region for the whole run. Screen readers get the same
-          progress a sighted person gets from the timeline.
-        -->
-        <p id="run-status" class="status" role="status" aria-live="polite" hidden></p>
       </section>
 
       <section class="panels wrap" aria-label="What each side receives">
@@ -95,9 +131,16 @@
       </section>
 
       <section class="timeline-section wrap" aria-label="What happens, and when">
-        <h2 style="font-size: 1.05rem">What happens, and when</h2>
+        <div class="timeline-head">
+          <h2>What happens, and when</h2>
+          <!--
+            Hidden from assistive tech: the status line already announces each
+            stage, and a counter updating ten times a second would talk over it.
+          -->
+          <span class="elapsed" id="elapsed" data-running="false" aria-hidden="true">0s</span>
+        </div>
         <p class="step-note" style="margin-top: 0.35rem">
-          Simulated timing. The clock shows what a live install is set up to do.
+          Simulated, but paced to the real clock. The steps land at the seconds they claim.
         </p>
 
         <ol class="timeline" id="timeline">
@@ -126,7 +169,7 @@
       </section>
 
       <details class="accordion card wrap" id="next-to-jobber">
-        <summary>How this sits next to Jobber</summary>
+        <summary>How this sits next to Jobber or Housecall Pro</summary>
         <div class="card-body">
           <div class="item">
             <h4>You could build it yourself in HighLevel</h4>
@@ -164,7 +207,7 @@
         <dl class="offer-grid">
           <div class="offer-item">
             <dt>Install</dt>
-            <dd>from $997 DFY setup</dd>
+            <dd>$997 DFY setup</dd>
           </div>
           <div class="offer-item">
             <dt>Payment shape</dt>
@@ -195,7 +238,7 @@
     <footer class="site-footer">
       <div class="wrap">
         <span>Built by Igor Lima &middot; El Cajon / East County</span>
-        <span>DFY install for trades from $997. This page is the demo only.</span>
+        <span>DFY install for trades, $997. This page is the demo only.</span>
       </div>
     </footer>
 

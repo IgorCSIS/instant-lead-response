@@ -26,8 +26,7 @@
   --ember-500: #d97706;
   --ember-600: #c2410c;
 
-  --good: #34d399;
-  --good-bg: #0c2a22;
+  /* No mint token. Done states are ember; mint is the security lane. */
   --warn: #fbbf24;
   --warn-bg: #2a2109;
   --bad: #f87171;
@@ -164,13 +163,13 @@ a {
 }
 
 /*
- * The honesty chip. Ember outline rather than success green, because green
- * on this page means a step completed, and nothing about "this is a demo"
- * is a success state.
+ * The honesty chip. Two pixels of border rather than one, so it reads as a
+ * notice rather than another label, and stays distinct from the filled
+ * ember state badges on the panels.
  */
 .chip-demo {
-  border: 1px solid rgba(245, 158, 11, 0.45);
-  background: rgba(245, 158, 11, 0.1);
+  border: 2px solid rgba(245, 158, 11, 0.6);
+  background: rgba(245, 158, 11, 0.12);
   color: var(--ember-400);
 }
 
@@ -179,9 +178,14 @@ a {
   color: var(--sand-400);
 }
 
-.chip-good {
-  background: var(--good-bg);
-  color: var(--good);
+/*
+ * A step that finished. Filled ember, not mint: this page shares the
+ * contractor lane with the Ridgeview and Lead Follow-up demos, and mint
+ * green belongs to the security lane, which is a different business.
+ */
+.chip-done {
+  background: var(--ember-600);
+  color: var(--sand-50);
 }
 
 .chip-warn {
@@ -286,6 +290,62 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+}
+
+/* ------------------------------------------------------- segmented control */
+
+.source-pick {
+  margin-top: 1.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+}
+
+.source-pick-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sand-400);
+}
+
+.segmented {
+  display: inline-flex;
+  padding: 0.2rem;
+  gap: 0.2rem;
+  border: 1px solid var(--ink-600);
+  border-radius: 0.7rem;
+  background: var(--ink-900);
+}
+
+.seg {
+  min-height: var(--tap);
+  padding: 0.4rem 0.9rem;
+  border: 1px solid transparent;
+  border-radius: 0.55rem;
+  background: transparent;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--sand-200);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.seg:hover:not([aria-checked="true"]):not(:disabled) {
+  background: var(--ink-800);
+}
+
+.seg[aria-checked="true"] {
+  background: rgba(245, 158, 11, 0.14);
+  border-color: rgba(245, 158, 11, 0.5);
+  color: var(--ember-400);
+}
+
+.seg:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 /* -------------------------------------------------------------------- card */
@@ -399,6 +459,16 @@ a {
   font-weight: 600;
 }
 
+/* Marks the sample phone itself, not just the page around it. */
+.notify-tag {
+  border: 1px solid rgba(245, 158, 11, 0.5);
+  border-radius: 999px;
+  padding: 0.05rem 0.45rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ember-400);
+}
+
 .notify-body {
   margin-top: 0.9rem;
   padding-top: 0.9rem;
@@ -410,6 +480,38 @@ a {
 
 .timeline-section {
   margin-top: 2rem;
+}
+
+.timeline-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+
+.timeline-head h2 {
+  font-size: 1.05rem;
+}
+
+/*
+ * The elapsed readout. It exists because the steps really do land at 8 and
+ * 12 seconds, and a number counting up is the difference between a page that
+ * looks slow and a page that is visibly timing itself.
+ */
+.elapsed {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--ink-600);
+  color: var(--sand-400);
+}
+
+.elapsed[data-running="true"] {
+  border-color: rgba(245, 158, 11, 0.5);
+  color: var(--ember-400);
 }
 
 .timeline {
@@ -449,15 +551,21 @@ a {
   gap: 0.6rem;
 }
 
+/*
+ * Pending is the state most of this timeline spends most of its time in, so
+ * it is set at reading strength rather than dimmed to near invisibility. The
+ * difference between pending and done is the rail and the dot, not whether
+ * you can make the words out.
+ */
 .step-clock {
   font-family: var(--mono);
   font-size: 0.8rem;
-  color: var(--sand-400);
+  color: var(--sand-200);
   min-width: 2.2rem;
 }
 
 .step-label {
-  color: var(--sand-400);
+  color: var(--sand-200);
   font-weight: 600;
 }
 
@@ -483,14 +591,18 @@ a {
   color: var(--ember-400);
 }
 
-/* Done: finished and staying on screen. */
+/*
+ * Done: finished and staying on screen. Ember like the active step, but
+ * solid and still, where active pulses. The difference a visitor reads is
+ * movement, not hue, which is also what keeps this legible without colour.
+ */
 .step[data-state="done"] {
-  border-left-color: var(--good);
+  border-left-color: var(--ember-600);
 }
 
 .step[data-state="done"]::before {
-  border-color: var(--good);
-  background: var(--good);
+  border-color: var(--ember-400);
+  background: var(--ember-500);
 }
 
 .step[data-state="done"] .step-label {
@@ -498,7 +610,7 @@ a {
 }
 
 .step[data-state="done"] .step-clock {
-  color: var(--good);
+  color: var(--ember-400);
 }
 
 @keyframes step-pulse {
@@ -613,6 +725,11 @@ a {
   color: var(--bad);
 }
 
+/*
+ * The status line never hides. At rest it carries the honesty note, so the
+ * first thing under the button that starts the demo is what the demo will
+ * not do.
+ */
 .status[hidden] {
   display: none;
 }
