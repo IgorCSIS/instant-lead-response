@@ -92,16 +92,14 @@
    * When each thing happens, in milliseconds from the press.
    *
    * These are the clock labels on the timeline, not decoration. A step turns
-   * active well before it completes, so the pulse is what fills the wait
-   * rather than a frozen screen.
+   * active the moment the one before it finishes and stays pulsing until its
+   * own time comes up, so the pulse is what fills the wait rather than a
+   * frozen screen.
    */
   var CLOCK = {
-    receivedActive: 0,
     receivedDone: 400,
-    replyActive: 700,
     replyDone: 8000,
     answer: 10000,
-    notifyActive: 10200,
     notifyDone: 12000,
   };
 

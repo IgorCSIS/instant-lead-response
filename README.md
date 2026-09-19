@@ -59,6 +59,22 @@ The honesty chip lives in a sticky header, so it is on screen at every scroll
 position rather than only at the top, and the timeline says its own timing is
 simulated.
 
+## Twelve seconds, and where they go
+
+<p align="center">
+  <img src="assets/timeline.svg" alt="A twelve second timeline with four beats. The lead is received at 0.4 seconds, labelled 0s on the page. The auto-reply goes out at 8 seconds. The homeowner answers at 10 seconds, which is not one of the page's steps. The owner is notified at 12 seconds. Between the first and second beats sits 7.6 seconds with nothing on screen but a pulsing step." width="880">
+</p>
+
+Four things happen, and the page labels three of them. The fourth is the
+homeowner answering the qualifying question at ten seconds, and it is the one
+that matters: without an answer the notification has nothing in it worth
+reading on a roof.
+
+The gap between the first two beats is the honest part. Seven and a half
+seconds is a long time to watch a step pulse, and every instinct says to
+speed it up. Speeding it up would be making the opposite argument to the one
+the page is here to make.
+
 ## Stack decision
 
 | Layer | Choice | Why |
@@ -166,6 +182,7 @@ rendered colour rather than eyeballed. All of them meet WCAG AA.
 │   ├── logo.svg                32x32 mark, a speech bubble and a bolt
 │   ├── favicon.svg             The same mark, as the tab icon
 │   ├── banner.svg              1200x300 README banner
+│   ├── timeline.svg            The twelve seconds, drawn from the CLOCK values
 │   ├── og-image.html           Source for the social card
 │   ├── og-image.png            1200x630, rasterized from the above
 │   └── screenshot.png          The finished demo, for this README
