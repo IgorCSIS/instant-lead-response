@@ -1,0 +1,189 @@
+<!--
+  Source for assets/og-image.png, the 1200x630 card shown when the link is
+  pasted into Slack, LinkedIn, or a text message.
+
+  It is HTML rather than SVG because this gets rasterized once, so it can
+  use real layout instead of hand-placed coordinates. Regenerate with:
+
+    node scripts/make-og-image.mjs
+
+  which needs a Chromium and is not part of any build. The PNG is committed,
+  so shipping the site needs neither.
+-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Instant Lead Response</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Open Graph consumers expect exactly this. A card that is not
+         1200x630 gets cropped differently by every one of them. */
+      body {
+        width: 1200px;
+        height: 630px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 72px 76px;
+        background: #070e18;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: #f8fafc;
+      }
+
+      .top {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+      }
+
+      .top img {
+        width: 72px;
+        height: 72px;
+      }
+
+      .top span {
+        font-size: 40px;
+        font-weight: 600;
+        color: #cbd5e1;
+        letter-spacing: -0.5px;
+      }
+
+      .mid {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 48px;
+      }
+
+      h1 {
+        font-size: 54px;
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: -1.5px;
+        max-width: 545px;
+      }
+
+      /* Explicit <br>, not an automatic wrap. This is rasterized once, so
+         the break lands wherever the rendering machine's font puts it, and
+         that is not a decision worth leaving to chance. */
+
+      .sub {
+        margin-top: 20px;
+        font-size: 28px;
+        color: #8fa3bc;
+        max-width: 500px;
+      }
+
+      .card {
+        width: 430px;
+        border: 1px solid #1b2a40;
+        border-radius: 14px;
+        background: #111c2e;
+        padding: 18px;
+      }
+
+      .row {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 12px 0;
+      }
+
+      .row + .row {
+        border-top: 1px solid #1b2a40;
+      }
+
+      .clock {
+        flex: none;
+        width: 52px;
+        padding: 3px 0;
+        border-radius: 999px;
+        background: #2a1b08;
+        color: #f59e0b;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .what b {
+        display: block;
+        font-size: 17px;
+        font-weight: 600;
+        color: #f8fafc;
+      }
+
+      .what span {
+        display: block;
+        margin-top: 3px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 13px;
+        color: #fbbf24;
+      }
+
+      .bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        font-size: 22px;
+      }
+
+      .url {
+        color: #f59e0b;
+        font-weight: 600;
+      }
+
+      .facts {
+        color: #8fa3bc;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top">
+      <img src="logo.svg" alt="" />
+      <span>Instant Lead Response</span>
+    </div>
+
+    <div class="mid">
+      <div>
+        <h1>Answered in 8s.<br />Notified at 12.</h1>
+        <p class="sub">Missed call or web form, answered while you are still on the job.</p>
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <span class="clock">0s</span>
+          <span class="what">
+            <b>Lead received</b>
+            <span>Web form, El Cajon: AC not cooling</span>
+          </span>
+        </div>
+        <div class="row">
+          <span class="clock">8s</span>
+          <span class="what">
+            <b>Auto-reply sent</b>
+            <span>Hi Maria, this is East County Comfort.</span>
+          </span>
+        </div>
+        <div class="row">
+          <span class="clock">12s</span>
+          <span class="what">
+            <b>Owner notified</b>
+            <span>Maria, AC not cooling, Emergency</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <span class="url">igorcsis.github.io/instant-lead-response</span>
+      <span class="facts">Simulated demo. Nothing is sent.</span>
+    </div>
+  </body>
+</html>

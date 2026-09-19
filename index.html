@@ -14,6 +14,11 @@
     <link rel="canonical" href="https://igorcsis.github.io/instant-lead-response/" />
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 
+    <!--
+      Absolute URLs on purpose. Scrapers do not resolve relative paths, and a
+      project page served from /instant-lead-response/ makes that easy to get
+      wrong.
+    -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Instant Lead Response" />
     <meta property="og:title" content="Missed the lead while you were on a job?" />
@@ -22,7 +27,69 @@
       content="A simulated demo: the customer gets a fast text back and you get an SMS notify, while you keep Jobber or Housecall Pro."
     />
     <meta property="og:url" content="https://igorcsis.github.io/instant-lead-response/" />
-    <meta name="twitter:card" content="summary" />
+    <meta
+      property="og:image"
+      content="https://igorcsis.github.io/instant-lead-response/assets/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Instant Lead Response. Answered in 8s, notified at 12. A card showing three timeline steps: lead received, auto-reply sent, owner notified."
+    />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Missed the lead while you were on a job?" />
+    <meta
+      name="twitter:description"
+      content="A simulated demo: the customer gets a fast text back and you get an SMS notify, while you keep Jobber or Housecall Pro."
+    />
+    <meta
+      name="twitter:image"
+      content="https://igorcsis.github.io/instant-lead-response/assets/og-image.png"
+    />
+
+    <!--
+      Structured data, so a search result can say what this is rather than
+      guessing from the first paragraph it finds. Inline because the page
+      loads no other scripts and is not about to start.
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Instant Lead Response",
+        "url": "https://igorcsis.github.io/instant-lead-response/",
+        "description": "A simulated demo of instant lead response for HVAC and plumbing owners in El Cajon and East County San Diego. A missed call or web form gets a fast text back that names the job, and the owner gets an SMS notify, alongside Jobber or Housecall Pro.",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "license": "https://opensource.org/licenses/MIT",
+        "inLanguage": "en-US",
+        "author": {
+          "@type": "Person",
+          "name": "Igor Lima",
+          "url": "https://igorcsis.github.io/niftyai-portfolio/"
+        },
+        "sameAs": "https://github.com/IgorCSIS/instant-lead-response",
+        "areaServed": "El Cajon and East County San Diego, California",
+        "featureList": [
+          "Missed call text-back simulation",
+          "Web form lead auto-reply that names the job",
+          "One qualifying question before dispatch",
+          "Owner SMS notify with name, job, city and urgency",
+          "Timeline paced to the real clock at 0, 8 and 12 seconds",
+          "Runs alongside Jobber or Housecall Pro rather than replacing them"
+        ]
+      }
+    </script>
 
     <link rel="stylesheet" href="styles.css" />
   </head>
