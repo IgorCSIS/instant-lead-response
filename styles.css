@@ -205,6 +205,9 @@ a {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  /* Anchors styled as buttons inherit the underline every anchor gets, which
+     draws a line through the middle of a solid ember pill. */
+  text-decoration: none;
   min-height: var(--tap);
   padding: 0.65rem 1.15rem;
   border-radius: 0.65rem;
